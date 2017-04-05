@@ -2,6 +2,8 @@ package ru.efo.vaadin.addon.highchart;
 
 import com.vaadin.annotations.JavaScript;
 import com.vaadin.ui.AbstractJavaScriptComponent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.efo.vaadin.addon.highchart.model.configuration.Configuration;
 
 import java.util.UUID;
