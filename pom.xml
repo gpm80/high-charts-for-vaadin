@@ -6,7 +6,7 @@
 
     <groupId>ru.vaadin.addon</groupId>
     <artifactId>high-charts</artifactId>
-    <version>1.0.5</version>
+    <version>1.0.6</version>
 
     <name>High-Charts Add-on for Vaadin 7+</name>
     <organization>

@@ -11,6 +11,9 @@ Addon для framework Vaadin с поддержкой версии 7+
 
 ## История изменений
 
+### Version 1.0.6 (Experminetal)
+- Возможеость менять конфигурацию диаграммы на лету
+
 ### Version 1.0.5 (Experminetal)
 - Совместимость с java 7+
 

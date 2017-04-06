@@ -5,7 +5,9 @@ import com.vaadin.ui.AbstractJavaScriptComponent;
 import com.vaadin.ui.JavaScriptFunction;
 import org.json.JSONArray;
 import org.json.JSONException;
+import ru.vaadin.addon.highchart.model.configuration.Configuration;
 
+import java.util.HashMap;
 import java.util.UUID;
 
 /**
@@ -15,14 +17,14 @@ import java.util.UUID;
 @JavaScript({"highcharts.js", "controller.js"})
 public class HighChart extends AbstractJavaScriptComponent {
 
-    private final ru.vaadin.addon.highchart.model.configuration.Configuration configuration;
+    private Configuration configuration;
 
     /**
      * Конструктор
      *
      * @param configuration реализация конфигурации диаграммы.
      */
-    public HighChart(ru.vaadin.addon.highchart.model.configuration.Configuration configuration) {
+    public HighChart(Configuration configuration) {
         String idDiv = UUID.randomUUID().toString();
         setId(idDiv);
         setSizeFull();
@@ -35,7 +37,19 @@ public class HighChart extends AbstractJavaScriptComponent {
         });
     }
 
+    public HighChart() {
+        this(null);
+    }
+
+    public Configuration getConfiguration() {
+        return configuration;
+    }
+
+    public void setConfiguration(Configuration configuration) {
+        this.configuration = configuration;
+    }
+
     public void refresh() {
-        callFunction("draw", getId(), configuration.toMap());
+        callFunction("draw", getId(), configuration != null ? configuration.toMap() : new HashMap<String, Object>());
     }
 }
