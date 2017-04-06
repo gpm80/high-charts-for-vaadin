@@ -20,7 +20,7 @@ public class HighChart extends AbstractJavaScriptComponent {
     /**
      * Конструктор
      *
-     * @param configuration реализация конфигурации диаграммы
+     * @param configuration реализация конфигурации диаграммы.
      */
     public HighChart(Configuration configuration) {
         String idDiv = UUID.randomUUID().toString();
