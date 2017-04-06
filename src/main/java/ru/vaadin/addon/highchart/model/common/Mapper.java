@@ -16,7 +16,7 @@ public class Mapper {
     }
 
     private Mapper() {
-        this(new HashMap<>());
+        this(new HashMap<String, Object>());
     }
 
     /**

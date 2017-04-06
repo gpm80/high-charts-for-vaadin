@@ -2,6 +2,9 @@ package ru.vaadin.addon.highchart;
 
 import com.vaadin.annotations.JavaScript;
 import com.vaadin.ui.AbstractJavaScriptComponent;
+import com.vaadin.ui.JavaScriptFunction;
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.util.UUID;
 
@@ -24,8 +27,11 @@ public class HighChart extends AbstractJavaScriptComponent {
         setId(idDiv);
         setSizeFull();
         this.configuration = configuration;
-        addFunction("init", jsonArray -> {
-            refresh();
+        addFunction("init", new JavaScriptFunction() {
+            @Override
+            public void call(JSONArray jsonArray) throws JSONException {
+                refresh();
+            }
         });
     }
 
