@@ -1,5 +1,7 @@
 package ru.vaadin.addon.highchart.model.options;
 
+import ru.vaadin.addon.highchart.model.common.Mapper;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,7 +11,7 @@ import java.util.Map;
  * Элемент оси X
  * Created by Petr Gusarov on 29.03.17.
  */
-public class XAxis<PARENT, X> extends ru.vaadin.addon.highchart.model.options.Axis<PARENT, XAxis<PARENT, X>> {
+public class XAxis<PARENT, X> extends Axis<PARENT, XAxis<PARENT, X>> {
 
     private List<X> categories;
 
@@ -54,8 +56,8 @@ public class XAxis<PARENT, X> extends ru.vaadin.addon.highchart.model.options.Ax
 
     @Override
     public Map<String, Object> toMap() {
-        return ru.vaadin.addon.highchart.model.common.Mapper.builder().putNode("xAxis",
-                ru.vaadin.addon.highchart.model.common.Mapper.builder()
+        return Mapper.builder().putNode("xAxis",
+                Mapper.builder()
                         .putIsExist("categories", categories)
                         .joinMap(super.toMap())
                         .map()

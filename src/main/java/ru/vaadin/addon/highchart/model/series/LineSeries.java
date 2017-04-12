@@ -1,5 +1,9 @@
 package ru.vaadin.addon.highchart.model.series;
 
+
+
+import ru.vaadin.addon.highchart.model.series.data.OnlyOrdinatesData;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -8,9 +12,9 @@ import java.util.Map;
  * Реализация данных линейных диаграмм
  * Created by Petr Gusarov on 03.04.17.
  */
-public class LineSeries<Y> extends ru.vaadin.addon.highchart.model.series.Series<LineSeries<Y>> {
+public class LineSeries<Y> extends Series<LineSeries<Y>> {
 
-    private final ru.vaadin.addon.highchart.model.series.data.MonoData<Y> data;
+    private final OnlyOrdinatesData<Y> data;
 
     @Override
     LineSeries<Y> release() {
@@ -18,7 +22,7 @@ public class LineSeries<Y> extends ru.vaadin.addon.highchart.model.series.Series
     }
 
     public LineSeries() {
-        data = new ru.vaadin.addon.highchart.model.series.data.MonoData<>();
+        data = new OnlyOrdinatesData<>();
     }
 
     /**

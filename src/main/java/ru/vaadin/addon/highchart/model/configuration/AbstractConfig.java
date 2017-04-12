@@ -1,19 +1,27 @@
 package ru.vaadin.addon.highchart.model.configuration;
 
+
+import ru.vaadin.addon.highchart.model.common.Mapper;
+import ru.vaadin.addon.highchart.model.options.Chart;
+import ru.vaadin.addon.highchart.model.options.Legend;
+import ru.vaadin.addon.highchart.model.options.SubTitle;
+import ru.vaadin.addon.highchart.model.options.Title;
+import ru.vaadin.addon.highchart.model.value.ChartType;
+
 import java.util.Map;
 
 /**
  * Created by Petr Gusarov on 31.03.17.
  */
-public abstract class AbstractConfig<TYPE> implements ru.vaadin.addon.highchart.model.configuration.Configuration {
+public abstract class AbstractConfig<TYPE> implements Configuration {
 
-    private ru.vaadin.addon.highchart.model.options.Title<TYPE> title;
-    private ru.vaadin.addon.highchart.model.options.SubTitle<TYPE> subTitle;
-    private ru.vaadin.addon.highchart.model.options.Legend<TYPE> legend;
-    private ru.vaadin.addon.highchart.model.options.Chart<TYPE> chart;
+    private Title<TYPE> title;
+    private SubTitle<TYPE> subTitle;
+    private Legend<TYPE> legend;
+    private Chart<TYPE> chart;
 
-    public AbstractConfig(ru.vaadin.addon.highchart.model.value.ChartType type) {
-        this.chart = new ru.vaadin.addon.highchart.model.options.Chart<>(release());
+    public AbstractConfig(ChartType type) {
+        this.chart = new Chart<>(release());
         chart.type(type);
     }
 
@@ -29,7 +37,7 @@ public abstract class AbstractConfig<TYPE> implements ru.vaadin.addon.highchart.
      */
     public abstract void clear();
 
-    public ru.vaadin.addon.highchart.model.options.Chart<TYPE> chart() {
+    public Chart<TYPE> chart() {
         return chart;
     }
 
@@ -38,9 +46,9 @@ public abstract class AbstractConfig<TYPE> implements ru.vaadin.addon.highchart.
      *
      * @return экземпляр класса заголовка
      */
-    public ru.vaadin.addon.highchart.model.options.Title<TYPE> title() {
+    public Title<TYPE> title() {
         if (title == null) {
-            title = new ru.vaadin.addon.highchart.model.options.Title<>(release());
+            title = new Title<>(release());
         }
         return title;
     }
@@ -50,9 +58,9 @@ public abstract class AbstractConfig<TYPE> implements ru.vaadin.addon.highchart.
      *
      * @return экземпляр класса подзаголовка
      */
-    public ru.vaadin.addon.highchart.model.options.SubTitle<TYPE> subtitle() {
+    public SubTitle<TYPE> subtitle() {
         if (this.subTitle == null) {
-            this.subTitle = new ru.vaadin.addon.highchart.model.options.SubTitle<>(release());
+            this.subTitle = new SubTitle<>(release());
         }
         return subTitle;
     }
@@ -62,16 +70,16 @@ public abstract class AbstractConfig<TYPE> implements ru.vaadin.addon.highchart.
      *
      * @return экземпляр класса легенды
      */
-    public ru.vaadin.addon.highchart.model.options.Legend<TYPE> legend() {
+    public Legend<TYPE> legend() {
         if (legend == null) {
-            legend = new ru.vaadin.addon.highchart.model.options.Legend<>(release());
+            legend = new Legend<>(release());
         }
         return legend;
     }
 
     @Override
     public Map<String, Object> toMap() {
-        return ru.vaadin.addon.highchart.model.common.Mapper.builder()
+        return Mapper.builder()
                 .append(chart)
                 .append(title)
                 .append(subTitle)

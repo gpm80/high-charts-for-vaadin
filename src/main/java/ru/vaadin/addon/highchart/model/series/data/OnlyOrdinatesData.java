@@ -1,21 +1,25 @@
 package ru.vaadin.addon.highchart.model.series.data;
 
+import ru.vaadin.addon.highchart.model.common.Mapper;
+import ru.vaadin.addon.highchart.model.configuration.Configuration;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 /**
+ * Данные со значениями только по оси ординат
  * Created by Petr Gusarov on 04.04.17.
  */
-public class MonoData<Y> implements ru.vaadin.addon.highchart.model.configuration.Configuration {
+public class OnlyOrdinatesData<Y> implements Configuration {
 
     private final List<Y> data;
 
-    public MonoData() {
+    public OnlyOrdinatesData() {
         data = new ArrayList<>();
     }
 
-    public MonoData<Y> data(List<Y> values) {
+    public OnlyOrdinatesData<Y> data(List<Y> values) {
         data.clear();
         data.addAll(values);
         return this;
@@ -23,7 +27,7 @@ public class MonoData<Y> implements ru.vaadin.addon.highchart.model.configuratio
 
     @Override
     public Map<String, Object> toMap() {
-        return ru.vaadin.addon.highchart.model.common.Mapper.builder()
+        return Mapper.builder()
                 .putIsExist("data", data.toArray())
                 .map();
     }

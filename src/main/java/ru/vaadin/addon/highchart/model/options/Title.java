@@ -1,17 +1,22 @@
 package ru.vaadin.addon.highchart.model.options;
 
+import ru.vaadin.addon.highchart.model.common.Mapper;
+import ru.vaadin.addon.highchart.model.configuration.Configuration;
+import ru.vaadin.addon.highchart.model.value.Align;
+import ru.vaadin.addon.highchart.model.value.VerticalAlign;
+
 import java.util.Map;
 
 /**
  * Элемент title
  * Created by Petr Gusarov on 28.03.17.
  */
-public class Title<T> extends ru.vaadin.addon.highchart.model.options.Parent<T> implements ru.vaadin.addon.highchart.model.configuration.Configuration {
+public class Title<T> extends Parent<T> implements Configuration {
 
     protected String key;
     private String text;
-    private ru.vaadin.addon.highchart.model.value.Align align;
-    private ru.vaadin.addon.highchart.model.value.VerticalAlign verticalAlign;
+    private Align align;
+    private VerticalAlign verticalAlign;
 
     public Title(T parent) {
         super(parent);
@@ -35,7 +40,7 @@ public class Title<T> extends ru.vaadin.addon.highchart.model.options.Parent<T> 
      * @param align тип выравнивания
      * @return
      */
-    public Title<T> align(ru.vaadin.addon.highchart.model.value.Align align) {
+    public Title<T> align(Align align) {
         this.align = align;
         return this;
     }
@@ -46,15 +51,15 @@ public class Title<T> extends ru.vaadin.addon.highchart.model.options.Parent<T> 
      * @param verticalAlign тип выравнивания
      * @return
      */
-    public Title<T> verticalAlign(ru.vaadin.addon.highchart.model.value.VerticalAlign verticalAlign) {
+    public Title<T> verticalAlign(VerticalAlign verticalAlign) {
         this.verticalAlign = verticalAlign;
         return this;
     }
 
     @Override
     public Map<String, Object> toMap() {
-        return ru.vaadin.addon.highchart.model.common.Mapper.builder().putNode(key,
-                ru.vaadin.addon.highchart.model.common.Mapper.builder()
+        return Mapper.builder().putNode(key,
+                Mapper.builder()
                         .putIsExist("text", text)
                         .putIsExist("align", align)
                         .putIsExist("verticalAlign", verticalAlign)

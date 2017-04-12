@@ -1,5 +1,7 @@
 package ru.vaadin.addon.highchart.model.common;
 
+import ru.vaadin.addon.highchart.model.configuration.Configuration;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -63,7 +65,7 @@ public class Mapper {
      * @param configuration конфигурация
      * @return
      */
-    public Mapper append(ru.vaadin.addon.highchart.model.configuration.Configuration configuration) {
+    public Mapper append(Configuration configuration) {
         if (configuration != null) {
             joinMap(configuration.toMap());
         }

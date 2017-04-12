@@ -1,12 +1,16 @@
 package ru.vaadin.addon.highchart.model.series;
 
+import ru.vaadin.addon.highchart.model.common.ColorUtils;
+import ru.vaadin.addon.highchart.model.common.Mapper;
+import ru.vaadin.addon.highchart.model.configuration.Configuration;
+
 import java.util.Map;
 
 /**
  * Абстрактная реализация ряда
  * Created by Petr Gusarov on 20.02.17.
  */
-public abstract class Series<T> implements ru.vaadin.addon.highchart.model.configuration.Configuration {
+public abstract class Series<T> implements Configuration {
 
     protected String name;
     protected String color;
@@ -37,7 +41,7 @@ public abstract class Series<T> implements ru.vaadin.addon.highchart.model.confi
      * @return
      */
     public T color(int r, int g, int b) {
-        return color(ru.vaadin.addon.highchart.model.common.Color.convertRGBtoString((byte) r, (byte) g, (byte) b));
+        return color(ColorUtils.convertRGBtoString((byte) r, (byte) g, (byte) b));
     }
 
     /**
@@ -53,7 +57,7 @@ public abstract class Series<T> implements ru.vaadin.addon.highchart.model.confi
 
     @Override
     public Map<String, Object> toMap() {
-        return ru.vaadin.addon.highchart.model.common.Mapper.builder()
+        return Mapper.builder()
                 .putIsExist("name", name)
                 .putIsExist("color", color)
                 .map();

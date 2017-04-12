@@ -1,11 +1,14 @@
 package ru.vaadin.addon.highchart.model.options;
 
+import ru.vaadin.addon.highchart.model.common.Mapper;
+import ru.vaadin.addon.highchart.model.configuration.Configuration;
+
 import java.util.Map;
 
 /**
  * Created by Petr Gusarov on 04.04.17.
  */
-public abstract class Axis<PARENT, AXIS> extends ru.vaadin.addon.highchart.model.options.Parent<PARENT> implements ru.vaadin.addon.highchart.model.configuration.Configuration {
+public abstract class Axis<PARENT, AXIS> extends Parent<PARENT> implements Configuration {
 
     public Axis(PARENT parent) {
         super(parent);
@@ -13,18 +16,18 @@ public abstract class Axis<PARENT, AXIS> extends ru.vaadin.addon.highchart.model
 
     abstract AXIS release();
 
-    protected ru.vaadin.addon.highchart.model.options.TitleAxis<AXIS> title;
+    protected TitleAxis<AXIS> title;
 
-    public ru.vaadin.addon.highchart.model.options.TitleAxis<AXIS> title() {
+    public TitleAxis<AXIS> title() {
         if (title == null) {
-            title = new ru.vaadin.addon.highchart.model.options.TitleAxis<>(release());
+            title = new TitleAxis<>(release());
         }
         return title;
     }
 
     @Override
     public Map<String, Object> toMap() {
-        return ru.vaadin.addon.highchart.model.common.Mapper.builder()
+        return Mapper.builder()
                 .joinMap(title.toMap())
                 .map();
     }

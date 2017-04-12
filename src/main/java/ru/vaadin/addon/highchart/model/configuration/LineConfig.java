@@ -1,5 +1,12 @@
 package ru.vaadin.addon.highchart.model.configuration;
 
+import ru.vaadin.addon.highchart.model.common.Mapper;
+import ru.vaadin.addon.highchart.model.options.XAxis;
+import ru.vaadin.addon.highchart.model.options.YAxis;
+
+import ru.vaadin.addon.highchart.model.series.LineSeries;
+import ru.vaadin.addon.highchart.model.value.ChartType;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -10,15 +17,15 @@ import java.util.Map;
  */
 public class LineConfig<X, Y> extends ru.vaadin.addon.highchart.model.configuration.AbstractConfig<LineConfig<X, Y>> {
 
-    private ru.vaadin.addon.highchart.model.options.XAxis<LineConfig<X, Y>, X> xAxis;
-    private ru.vaadin.addon.highchart.model.options.YAxis<LineConfig<X, Y>, Y> yAxis;
-    private List<ru.vaadin.addon.highchart.model.series.LineSeries<Y>> series;
+    private XAxis<LineConfig<X, Y>, X> xAxis;
+    private YAxis<LineConfig<X, Y>, Y> yAxis;
+    private List<LineSeries<Y>> series;
 
     /**
      * Конструктор конфигурации для линейного графика
      */
     public LineConfig() {
-        super(ru.vaadin.addon.highchart.model.value.ChartType.LINE);
+        super(ChartType.LINE);
         this.series = new ArrayList<>();
     }
 
@@ -28,22 +35,22 @@ public class LineConfig<X, Y> extends ru.vaadin.addon.highchart.model.configurat
     }
 
 
-    public ru.vaadin.addon.highchart.model.options.XAxis<LineConfig<X, Y>, X> xAxis() {
+    public XAxis<LineConfig<X, Y>, X> xAxis() {
         if (xAxis == null) {
-            this.xAxis = new ru.vaadin.addon.highchart.model.options.XAxis<>(this);
+            this.xAxis = new XAxis<>(this);
         }
         return xAxis;
     }
 
-    public ru.vaadin.addon.highchart.model.options.YAxis<LineConfig<X, Y>, Y> yAxis() {
+    public YAxis<LineConfig<X, Y>, Y> yAxis() {
         if (this.yAxis == null) {
-            this.yAxis = new ru.vaadin.addon.highchart.model.options.YAxis<>(this);
+            this.yAxis = new YAxis<>(this);
         }
         return yAxis;
     }
 
-    public ru.vaadin.addon.highchart.model.series.LineSeries<Y> addSeries() {
-        ru.vaadin.addon.highchart.model.series.LineSeries<Y> s = new ru.vaadin.addon.highchart.model.series.LineSeries<>();
+    public LineSeries<Y> addSeries() {
+        LineSeries<Y> s = new LineSeries<>();
         series.add(s);
         return s;
     }
@@ -58,10 +65,10 @@ public class LineConfig<X, Y> extends ru.vaadin.addon.highchart.model.configurat
     public Map<String, Object> toMap() {
 //        checkData();
         List<Map<String, Object>> lines = new ArrayList<>();
-        for (ru.vaadin.addon.highchart.model.series.LineSeries<Y> ls : series) {
+        for (LineSeries<Y> ls : series) {
             lines.add(ls.toMap());
         }
-        return ru.vaadin.addon.highchart.model.common.Mapper.builder()
+        return Mapper.builder()
                 .putIsExist("series", lines)
                 .append(xAxis)
                 .append(yAxis)

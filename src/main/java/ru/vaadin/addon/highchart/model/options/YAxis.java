@@ -1,12 +1,14 @@
 package ru.vaadin.addon.highchart.model.options;
 
+import ru.vaadin.addon.highchart.model.common.Mapper;
+
 import java.util.Map;
 
 /**
  * Настройки оси ординат
  * Created by Petr Gusarov on 28.03.17.
  */
-public class YAxis<PARENT, Y> extends ru.vaadin.addon.highchart.model.options.Axis<PARENT, YAxis<PARENT, Y>> {
+public class YAxis<PARENT, Y> extends Axis<PARENT, YAxis<PARENT, Y>> {
 
     public YAxis(PARENT parent) {
         super(parent);
@@ -19,8 +21,8 @@ public class YAxis<PARENT, Y> extends ru.vaadin.addon.highchart.model.options.Ax
 
     @Override
     public Map<String, Object> toMap() {
-        return ru.vaadin.addon.highchart.model.common.Mapper.builder().putNode("yAxis",
-                ru.vaadin.addon.highchart.model.common.Mapper.builder(super.toMap())
+        return Mapper.builder().putNode("yAxis",
+                Mapper.builder(super.toMap())
                         .map()
         ).map();
     }

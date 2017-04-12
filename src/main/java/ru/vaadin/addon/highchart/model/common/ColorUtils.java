@@ -1,9 +1,10 @@
 package ru.vaadin.addon.highchart.model.common;
 
 /**
+ * Утилита для работы с html цветом
  * Created by Petr Gusarov on 03.04.17.
  */
-public class Color {
+public class ColorUtils {
 
     /**
      * Преобразует цвет из RGB в строковое представление типа #FF00BB
