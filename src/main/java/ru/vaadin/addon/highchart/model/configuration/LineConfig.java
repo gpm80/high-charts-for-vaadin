@@ -1,8 +1,12 @@
 package ru.vaadin.addon.highchart.model.configuration;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+
+import ru.vaadin.addon.highchart.model.series.LineSeries;
 
 /**
  * Конфигурация графика
@@ -48,6 +52,18 @@ public class LineConfig<X, Y> extends ru.vaadin.addon.highchart.model.configurat
         return s;
     }
 
+    /**
+     * Сортировка серий по наименованию
+     */
+    public void sortSeriesByName() {
+        Collections.sort(series, new Comparator<LineSeries<Y>>() {
+            @Override
+            public int compare(LineSeries<Y> o1, LineSeries<Y> o2) {
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
+    }
+
     @Override
     public void clear() {
         series.clear();
@@ -62,11 +78,11 @@ public class LineConfig<X, Y> extends ru.vaadin.addon.highchart.model.configurat
             lines.add(ls.toMap());
         }
         return ru.vaadin.addon.highchart.model.common.Mapper.builder()
-                .putIsExist("series", lines)
-                .append(xAxis)
-                .append(yAxis)
-                .joinMap(super.toMap()
-                ).map();
+            .putIsExist("series", lines)
+            .append(xAxis)
+            .append(yAxis)
+            .joinMap(super.toMap()
+            ).map();
     }
 
 //    /**

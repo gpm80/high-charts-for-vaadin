@@ -29,6 +29,18 @@ public abstract class Series<T> implements ru.vaadin.addon.highchart.model.confi
     }
 
     /**
+     * Возвращает наименование серии
+     *
+     * @return
+     */
+    public String getName() {
+        if (name == null) {
+            return "";
+        }
+        return name;
+    }
+
+    /**
      * Устанавливает цвет ряда по RGB параметрам
      *
      * @param r красный
@@ -54,8 +66,8 @@ public abstract class Series<T> implements ru.vaadin.addon.highchart.model.confi
     @Override
     public Map<String, Object> toMap() {
         return ru.vaadin.addon.highchart.model.common.Mapper.builder()
-                .putIsExist("name", name)
-                .putIsExist("color", color)
-                .map();
+            .putIsExist("name", name)
+            .putIsExist("color", color)
+            .map();
     }
 }
